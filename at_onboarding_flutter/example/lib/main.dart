@@ -169,9 +169,10 @@ class _MyAppState extends State<MyApp> {
                             await KeyChainManager.getInstance()
                                 .enableUsingSharedStorage();
                           }
-                          setState(() {
-                            _usingSharedStore = true;
-                          });
+                          _usingSharedStore =
+                              await KeyChainManager.getInstance()
+                                  .isUsingSharedStorage();
+                          setState(() {});
                         },
                         child: Text(_usingSharedStore == true
                             ? 'Disable using shared storage'
