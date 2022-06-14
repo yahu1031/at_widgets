@@ -53,7 +53,7 @@ class _AtOnboardingPairScreenState extends State<AtOnboardingPairScreen> {
       absorbing: isParing,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Setting up your account'),
+          title: const Text(AtOnboardingStrings.onboardingTitle),
           centerTitle: true,
           actions: [
             IconButton(

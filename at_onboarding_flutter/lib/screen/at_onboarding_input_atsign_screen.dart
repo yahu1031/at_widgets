@@ -37,7 +37,7 @@ class _AtOnboardingInputAtSignScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Setting up your account'),
+        title: const Text(AtOnboardingStrings.onboardingTitle),
         actions: [
           IconButton(
             onPressed: _showReferenceWebview,

@@ -57,7 +57,7 @@ class _AtOnboardingActivateScreenState
       absorbing: isVerifing,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Setting up your account'),
+          title: const Text(AtOnboardingStrings.onboardingTitle),
           actions: [
             IconButton(
               onPressed: _showReferenceWebview,

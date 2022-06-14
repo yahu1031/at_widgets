@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'at_onboarding_result.dart';
 import 'screen/at_onboarding_home_screen.dart';
+import 'screen/at_onboarding_intro_screen.dart';
 import 'services/at_onboarding_config.dart';
 import 'screen/at_onboarding_start_screen.dart';
 
@@ -30,6 +31,20 @@ class AtOnboarding {
     }
   }
 
+  // static Future<bool?> checkAccount({
+  //   required BuildContext context,
+  // }) async {
+  //   final result = await Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (BuildContext context) {
+  //         return const AtOnboardingIntroScreen();
+  //       },
+  //     ),
+  //   );
+  //   return result;
+  // }
+
   static Future<AtOnboardingResult> start({
     required BuildContext context,
     required AtOnboardingConfig config,
@@ -40,12 +55,33 @@ class AtOnboarding {
         (AtOnboardingConstants.rootEnvironment.apikey ?? ''));
     AtOnboardingConstants.rootDomain =
         config.domain ?? AtOnboardingConstants.rootEnvironment.domain;
-    final result = await Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext context) {
-      return AtOnboardingHomeScreen(config: config);
-    }));
-    if (result is AtOnboardingResult) {
-      return result;
+    final haveAnAtsign = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return const AtOnboardingIntroScreen();
+        },
+      ),
+    );
+
+    if (haveAnAtsign != null) {
+      final result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return AtOnboardingHomeScreen(
+              config: config,
+              haveAnAtsign: haveAnAtsign ?? true,
+            );
+          },
+        ),
+      );
+
+      if (result is AtOnboardingResult) {
+        return result;
+      } else {
+        return AtOnboardingResult.cancelled();
+      }
     } else {
       return AtOnboardingResult.cancelled();
     }

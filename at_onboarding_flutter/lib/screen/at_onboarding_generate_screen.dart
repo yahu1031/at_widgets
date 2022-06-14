@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'at_onboarding_pair_screen.dart';
 import 'at_onboarding_reference_screen.dart';
 
-
 class AtOnboardingGenerateScreen extends StatefulWidget {
   final Function({required String atSign, required String secret})?
       onGenerateSuccess;
@@ -45,7 +44,7 @@ class _AtOnboardingGenerateScreenState
       absorbing: _isGenerating,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Setting up your account'),
+          title: const Text(AtOnboardingStrings.onboardingTitle),
           actions: [
             IconButton(
               onPressed: _showReferenceWebview,
