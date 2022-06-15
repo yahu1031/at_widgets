@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:at_backupkey_flutter/widgets/backup_key_widget.dart';
+import 'package:at_onboarding_flutter/services/at_onboarding_backup_service.dart';
 import 'package:at_onboarding_flutter/services/onboarding_service.dart';
 import 'package:at_onboarding_flutter/utils/at_onboarding_app_constants.dart';
 import 'package:at_onboarding_flutter/utils/at_onboarding_dimens.dart';
@@ -30,6 +31,10 @@ class _AtOnboardingBackupScreenState extends State<AtOnboardingBackupScreen> {
   void initState() {
     super.initState();
     atsign = OnboardingService.getInstance().currentAtsign;
+
+    AtOnboardingBackupService.instance.setRemindBackup(remind: true);
+    AtOnboardingBackupService.instance
+        .setBackupOpenedTime(dateTime: DateTime.now());
   }
 
   GlobalKey globalKey = GlobalKey();
@@ -45,7 +50,12 @@ class _AtOnboardingBackupScreenState extends State<AtOnboardingBackupScreen> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: const Text(AtOnboardingStrings.saveBackupKeyTitle),
-        leading: Container(),
+        leading: IconButton(
+          icon: const Icon(Icons.close_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -89,8 +99,10 @@ class _AtOnboardingBackupScreenState extends State<AtOnboardingBackupScreen> {
               child: AtOnboardingPrimaryButton(
                 height: 48,
                 borderRadius: 24,
-                child: const Text(AtOnboardingStrings.saveButtonTitle),
+                child: const Text("Backup Now"),
                 onPressed: () {
+                  AtOnboardingBackupService.instance
+                      .setRemindBackup(remind: false);
                   BackupKeyWidget(atsign: atsign ?? '')
                       .showBackupDialog(context);
                 },
@@ -104,13 +116,20 @@ class _AtOnboardingBackupScreenState extends State<AtOnboardingBackupScreen> {
               child: AtOnboardingSecondaryButton(
                 height: 48,
                 borderRadius: 24,
-                onPressed: Navigator.of(context).pop,
-                child: const Text(AtOnboardingStrings.continueButtonTitle),
+                onPressed: _handleRemindLatter,
+                child: const Text("Remind Me Later"),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _handleRemindLatter() {
+    Navigator.pop(context);
+    AtOnboardingBackupService.instance.setRemindBackup(remind: true);
+    AtOnboardingBackupService.instance
+        .setBackupOpenedTime(dateTime: DateTime.now());
   }
 }
