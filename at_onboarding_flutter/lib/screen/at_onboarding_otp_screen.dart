@@ -157,6 +157,29 @@ class _AtOnboardingOTPScreenState extends State<AtOnboardingOTPScreen> {
                   onPressed: _onResendPressed,
                   child: const Text('Resend Code'),
                 ),
+                const SizedBox(height: 20),
+                RichText(
+                    text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: "Note:",
+                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                            fontSize: AtOnboardingDimens.fontSmall,
+                            height: 1.5,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    TextSpan(
+                      text: """ If you didn\'t receive our email:
+  - Confirm that your @sign was entered correctly.
+  - Check your spam or junk email folder.""",
+                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                            fontSize: AtOnboardingDimens.fontSmall,
+                            height: 1.5,
+                          ),
+                    ),
+                  ],
+                )),
               ],
             ),
           ),
