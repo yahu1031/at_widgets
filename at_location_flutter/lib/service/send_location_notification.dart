@@ -275,8 +275,9 @@ class SendLocationNotification {
     } else {
       // ignore: unnecessary_null_comparison
       if (AtLocationNotificationListener().navKey != null) {
-        CustomToast().show('Location permission not granted',
+        showToast(
             AtLocationNotificationListener().navKey.currentContext!,
+          'Location permission not granted',
             isError: true);
       }
     }

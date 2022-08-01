@@ -94,14 +94,13 @@ class RequestLocationService {
         selectedContact.atSign!,
       );
       if (_state == true) {
-        CustomToast().show(
-            'Location Request sent to ${selectedContact.atSign!}',
+        showToast(
             AtLocationNotificationListener().navKey.currentContext!,
-            isSuccess: true);
+            'Location Request sent to ${selectedContact.atSign!}');
       } else if (_state == false) {
-        CustomToast().show(
-            'Something went wrong for ${selectedContact.atSign!}',
+        showToast(
             AtLocationNotificationListener().navKey.currentContext!,
+            'Something went wrong for ${selectedContact.atSign!}',
             isError: true);
       }
     });
@@ -259,8 +258,9 @@ class RequestLocationService {
       }
 
       if (result == false) {
-        CustomToast().show('Something went wrong , please try again.',
+        showToast(
             AtLocationNotificationListener().navKey.currentContext!,
+          'Something went wrong , please try again.',
             isError: true);
       } else {
         await KeyStreamService()
@@ -269,8 +269,9 @@ class RequestLocationService {
 
       return result ?? true;
     } catch (e) {
-      CustomToast().show('Something went wrong , please try again.',
+      showToast(
           AtLocationNotificationListener().navKey.currentContext,
+        'Something went wrong , please try again.',
           isError: true);
       _logger.severe('Error in requestLocationAcknowledgment $e');
       return false;

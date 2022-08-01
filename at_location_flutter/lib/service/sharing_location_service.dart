@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:at_client_mobile/at_client_mobile.dart';
 import 'package:at_commons/at_commons.dart';
 import 'package:at_contact/at_contact.dart';
 import 'package:at_location_flutter/common_components/custom_toast.dart';
@@ -11,9 +12,9 @@ import 'package:at_location_flutter/service/key_stream_service.dart';
 import 'package:at_location_flutter/service/notify_and_put.dart';
 import 'package:at_location_flutter/utils/constants/constants.dart';
 import 'package:at_location_flutter/utils/constants/init_location_service.dart';
-import 'at_location_notification_listener.dart';
-import 'package:at_client_mobile/at_client_mobile.dart';
 import 'package:at_utils/at_logger.dart';
+
+import 'at_location_notification_listener.dart';
 
 class SharingLocationService {
   static final SharingLocationService _singleton =
@@ -62,14 +63,11 @@ class SharingLocationService {
       var _state = await sendShareLocationEvent(selectedContact.atSign!, false,
           minutes: minutes);
       if (_state == true) {
-        CustomToast().show(
-            'Share Location Request sent to ${selectedContact.atSign!}',
-            AtLocationNotificationListener().navKey.currentContext!,
-            isSuccess: true);
+        showToast(AtLocationNotificationListener().navKey.currentContext!,
+            'Share Location Request sent to ${selectedContact.atSign!}');
       } else if (_state == false) {
-        CustomToast().show(
+        showToast(AtLocationNotificationListener().navKey.currentContext!,
             'Something went wrong for ${selectedContact.atSign!}',
-            AtLocationNotificationListener().navKey.currentContext!,
             isError: true);
       }
     });
@@ -186,19 +184,20 @@ class SharingLocationService {
       );
       _logger.finer('sendLocationNotificationAcknowledgment:$result');
       if (result) {
-        CustomToast().show('Request to update data is submitted',
-            AtLocationNotificationListener().navKey.currentContext,
-            isSuccess: true);
+        showToast(
+          AtLocationNotificationListener().navKey.currentContext,
+          'Request to update data is submitted',
+        );
         KeyStreamService().updatePendingStatus(locationNotificationModel);
       } else {
-        CustomToast().show('Something went wrong , please try again.',
-            AtLocationNotificationListener().navKey.currentContext,
+        showToast(AtLocationNotificationListener().navKey.currentContext,
+            'Something went wrong , please try again.',
             isError: true);
       }
       return result;
     } catch (e) {
-      CustomToast().show('Something went wrong , please try again.',
-          AtLocationNotificationListener().navKey.currentContext,
+      showToast(AtLocationNotificationListener().navKey.currentContext,
+          'Something went wrong , please try again.',
           isError: true);
 
       _logger.severe('sending share awk failed $e');

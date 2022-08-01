@@ -133,11 +133,10 @@ class _LocationPromptState extends State<LocationPrompt> {
                       CustomButton(
                         onPressed: () async {
                           if (widget.isShareLocationData) {
-                            CustomToast()
-                                .show(AllText().UPDATE_CANCELLED, context);
+                            showToast(context, AllText().UPDATE_CANCELLED);
                           } else if (widget.isRequestLocationData) {
-                            CustomToast()
-                                .show(AllText().PROMPT_CANCELLED, context);
+                                showToast(
+                                context, AllText().PROMPT_CANCELLED);
                           }
                           Navigator.of(context).pop();
                         },
@@ -162,14 +161,13 @@ class _LocationPromptState extends State<LocationPrompt> {
             shouldCheckForTimeChanges: true);
 
     if (update) {
-      CustomToast().show(
-          '${AllText().SHARE_LOC_REQ_SENT_TO} ${widget.locationNotificationModel!.receiver}',
+      showToast(
           context,
-          isSuccess: true);
+          '${AllText().SHARE_LOC_REQ_SENT_TO} ${widget.locationNotificationModel!.receiver}');
     } else {
-      CustomToast().show(
-          '${AllText().SOMETHING_WENT_WRONG_FOR} ${widget.locationNotificationModel!.receiver}',
+      showToast(
           context,
+          '${AllText().SOMETHING_WENT_WRONG_FOR} ${widget.locationNotificationModel!.receiver}',
           isError: true);
     }
   }
@@ -180,14 +178,13 @@ class _LocationPromptState extends State<LocationPrompt> {
             rePrompt: widget.locationNotificationModel!.rePrompt);
 
     if (update) {
-      CustomToast().show(
-          '${AllText().PROMPTED_AGAIN_TO} ${widget.locationNotificationModel!.atsignCreator}',
+      showToast(
           context,
-          isSuccess: true);
+          '${AllText().PROMPTED_AGAIN_TO} ${widget.locationNotificationModel!.atsignCreator}');
     } else {
-      CustomToast().show(
-          '${AllText().SOMETHING_WENT_WRONG_FOR} ${widget.locationNotificationModel!.atsignCreator}',
+      showToast(
           context,
+          '${AllText().SOMETHING_WENT_WRONG_FOR} ${widget.locationNotificationModel!.atsignCreator}',
           isError: true);
     }
   }

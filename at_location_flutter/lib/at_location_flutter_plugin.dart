@@ -93,7 +93,7 @@ class _AtLocationFlutterPluginState extends State<AtLocationFlutterPlugin> {
         calculateETA: widget.calculateETA,
         addCurrentUserMarker: widget.addCurrentUserMarker,
         textForCenter: widget.textForCenter,
-        showToast: showToast,
+        showToast: _showToast,
         notificationID: widget.notificationID,
         refreshAt: widget.refreshAt);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -102,10 +102,9 @@ class _AtLocationFlutterPluginState extends State<AtLocationFlutterPlugin> {
     });
   }
 
-  void showToast(String msg, {bool isError = false, isSuccess = false}) {
+  void _showToast(String msg, {bool isError = false}) {
     if (globalContext != null) {
-      CustomToast()
-          .show(msg, globalContext!, isError: isError, isSuccess: isSuccess);
+      showToast(globalContext!, msg, isError: isError);
     }
   }
 
@@ -144,11 +143,9 @@ class _AtLocationFlutterPluginState extends State<AtLocationFlutterPlugin> {
     });
 
     if (_newAtsignsSharing.isNotEmpty) {
-      CustomToast().show(
-          '${_listToString(_newAtsignsSharing)} started sharing location',
+      showToast(
           globalContext!,
-          isError: false,
-          isSuccess: false);
+          '${_listToString(_newAtsignsSharing)} started sharing location');
     }
   }
 

@@ -100,7 +100,7 @@ class _SecondScreenState extends State<SecondScreen> {
                   onPressed: () async {
                     var result = await checkAtsign();
                     if (!result) {
-                      CustomToast().show('Atsign not valid', context);
+                      showToast(context, 'Atsign not valid');
                       return;
                     }
                     await sendShareLocationNotification(receiver!, 30);
@@ -111,7 +111,7 @@ class _SecondScreenState extends State<SecondScreen> {
                   onPressed: () async {
                     var result = await checkAtsign();
                     if (!result) {
-                      CustomToast().show('Atsign not valid', context);
+                      showToast(context, 'Atsign not valid');
                       return;
                     }
                     await sendRequestLocationNotification(receiver!);
@@ -127,7 +127,7 @@ class _SecondScreenState extends State<SecondScreen> {
               onPressed: () async {
                 var result = await checkAtsign();
                 if (!result) {
-                  CustomToast().show('Atsign not valid', context);
+                  showToast(context, 'Atsign not valid');
                   return;
                 }
                 await Navigator.of(context).push(MaterialPageRoute(

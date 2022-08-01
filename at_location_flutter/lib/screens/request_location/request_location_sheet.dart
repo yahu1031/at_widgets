@@ -91,7 +91,7 @@ class _RequestLocationSheetState extends State<RequestLocationSheet> {
       setState(() {
         isLoading = false;
       });
-      CustomToast().show(AllText().AT_SIGN_NOT_VALID, context, isError: true);
+showToast(context, AllText().AT_SIGN_NOT_VALID, isError: true);
       return;
     }
 
@@ -107,14 +107,14 @@ class _RequestLocationSheetState extends State<RequestLocationSheet> {
     }
 
     if (result == true) {
-      CustomToast()
-          .show(AllText().REQUEST_LOCATION_SENT, context, isSuccess: true);
+      showToast(context,AllText().REQUEST_LOCATION_SENT);
       setState(() {
         isLoading = false;
       });
       Navigator.of(context).pop();
     } else {
-      CustomToast().show(AllText().SOMETHING_WENT_WRONG_TRY_AGAIN, context,
+      showToast(
+          context,AllText().SOMETHING_WENT_WRONG_TRY_AGAIN, 
           isError: true);
       setState(() {
         isLoading = false;

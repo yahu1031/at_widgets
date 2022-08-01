@@ -11,14 +11,13 @@ import 'package:at_location_flutter/location_modal/location_notification.dart';
 import 'package:at_location_flutter/screens/notification_dialog/notification_dialog.dart';
 import 'package:at_location_flutter/service/key_stream_service.dart';
 import 'package:at_location_flutter/service/master_location_service.dart';
-import 'package:at_location_flutter/utils/constants/colors.dart';
 import 'package:at_location_flutter/utils/constants/constants.dart';
 import 'package:at_location_flutter/utils/constants/init_location_service.dart';
+import 'package:at_utils/at_logger.dart';
 import 'package:flutter/material.dart';
 
 import 'request_location_service.dart';
 import 'sharing_location_service.dart';
-import 'package:at_utils/at_logger.dart';
 
 /// Starts monitor and listens for notifications related to this package.
 class AtLocationNotificationListener {
@@ -143,8 +142,8 @@ class AtLocationNotificationListener {
           (notificationKey.contains(MixedConstants.REQUEST_LOCATION_ACK)) ||
           (notificationKey.contains(MixedConstants.REQUEST_LOCATION))) {
         showToast(
-          'Decryption failed for ${getKeyType(notificationKey)} notification received from $fromAtSign with $e',
           navKey.currentContext!,
+          'Decryption failed for ${getKeyType(notificationKey)} notification received from $fromAtSign with $e',
           isError: true,
         );
       }
@@ -201,7 +200,7 @@ class AtLocationNotificationListener {
         var _result = await KeyStreamService()
             .addDataToList(locationData, receivedkey: notificationKey);
         if (_result is KeyLocationModel) {
-          showToast('$fromAtSign did a share location', navKey.currentContext!);
+          showToast(navKey.currentContext!, '$fromAtSign did a share location');
         }
       }
       return;
@@ -258,20 +257,6 @@ class AtLocationNotificationListener {
           );
         },
       );
-    }
-  }
-
-  showToast(String msg, BuildContext _context,
-      {bool isError = false, bool isSuccess = true}) {
-    try {
-      ScaffoldMessenger.of(_context).showSnackBar(SnackBar(
-        content: Text(msg),
-        backgroundColor: isError ? AllColors().RED : AllColors().GREEN,
-        dismissDirection: DismissDirection.horizontal,
-      ));
-    } catch (e) {
-      CustomToast().show(msg, navKey.currentContext!,
-          isError: isError, isSuccess: isSuccess);
     }
   }
 

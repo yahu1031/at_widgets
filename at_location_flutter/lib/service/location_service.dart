@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:core';
+
 import 'package:at_client_mobile/at_client_mobile.dart';
 import 'package:at_location_flutter/common_components/build_marker.dart';
-import 'package:at_location_flutter/common_components/custom_toast.dart';
+import 'package:at_location_flutter/common_components/custom_toast.dart' as toast;
 import 'package:at_location_flutter/location_modal/hybrid_model.dart';
 import 'package:at_location_flutter/service/master_location_service.dart';
 import 'package:at_location_flutter/utils/constants/init_location_service.dart';
+import 'package:at_utils/at_logger.dart';
 import 'package:geolocator/geolocator.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:latlong2/latlong.dart';
@@ -13,7 +15,6 @@ import 'package:latlong2/latlong.dart';
 import 'at_location_notification_listener.dart';
 import 'distance_calculate.dart';
 import 'my_location.dart';
-import 'package:at_utils/at_logger.dart';
 
 class LocationService {
   LocationService._();
@@ -135,8 +136,9 @@ class LocationService {
     } else {
       // ignore: unnecessary_null_comparison
       if (AtLocationNotificationListener().navKey != null) {
-        CustomToast().show('Location permission not granted',
+        toast.showToast(
             AtLocationNotificationListener().navKey.currentContext!,
+          'Location permission not granted',
             isError: true);
       }
     }

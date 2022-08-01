@@ -11,6 +11,7 @@ import 'package:at_location_flutter/utils/constants/colors.dart';
 import 'package:at_location_flutter/utils/constants/init_location_service.dart';
 import 'package:at_location_flutter/utils/constants/text_strings.dart';
 import 'package:at_location_flutter/utils/constants/text_styles.dart';
+import 'package:at_utils/at_logger.dart';
 import 'package:flutter/material.dart';
 
 import 'confirmation_dialog.dart';
@@ -18,7 +19,6 @@ import 'custom_toast.dart';
 import 'display_tile.dart';
 import 'draggable_symbol.dart';
 import 'loading_widget.dart';
-import 'package:at_utils/at_logger.dart';
 
 // ignore: must_be_immutable
 class CollapsedContent extends StatefulWidget {
@@ -234,19 +234,19 @@ class _CollapsedContentState extends State<CollapsedContent> {
                                                       isSharing = value;
                                                     });
                                                   } else {
-                                                    CustomToast().show(
+                                                    showToast(
+                                                        context,
                                                         AllText()
                                                             .SOMETHING_WENT_WRONG_TRY_AGAIN,
-                                                        context,
                                                         isError: true);
                                                   }
                                                   LoadingDialog().hide();
                                                 } catch (e) {
                                                   _logger.severe(e);
-                                                  CustomToast().show(
+                                                  showToast(
+                                                      context,
                                                       AllText()
                                                           .SOMETHING_WENT_WRONG_TRY_AGAIN,
-                                                      context,
                                                       isError: true);
                                                   LoadingDialog().hide();
                                                 }
@@ -266,23 +266,21 @@ class _CollapsedContentState extends State<CollapsedContent> {
                                                     .userListenerKeyword!
                                                     .receiver);
                                         if (result == true) {
-                                          CustomToast().show(
-                                              AllText().REQUEST_LOCATION_SENT,
-                                              context,
-                                              isSuccess: true);
+                                          showToast(context,
+                                              AllText().REQUEST_LOCATION_SENT);
                                         } else if (result == false) {
-                                          CustomToast().show(
+                                          showToast(
+                                              context,
                                               AllText()
                                                   .SOMETHING_WENT_WRONG_TRY_AGAIN,
-                                              context,
                                               isError: true);
                                         }
                                       } catch (e) {
                                         _logger.severe(e);
-                                        CustomToast().show(
+                                        showToast(
+                                            context,
                                             AllText()
                                                 .SOMETHING_WENT_WRONG_TRY_AGAIN,
-                                            context,
                                             isError: true);
                                       }
                                     },
@@ -343,12 +341,15 @@ class _CollapsedContentState extends State<CollapsedContent> {
       } else {
         LoadingDialog().hide();
 
-        CustomToast().show(AllText().SOMETHING_WENT_WRONG_TRY_AGAIN, context,
-            isError: true);
+        showToast(
+          context,
+          AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
+          isError: true,
+        );
       }
     } catch (e) {
       _logger.severe(e);
-      CustomToast().show(AllText().SOMETHING_WENT_WRONG_TRY_AGAIN, context,
+      showToast(context, AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
           isError: true);
       LoadingDialog().hide();
     }

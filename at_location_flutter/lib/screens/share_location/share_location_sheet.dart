@@ -127,12 +127,12 @@ class _ShareLocationSheetState extends State<ShareLocationSheet> {
       setState(() {
         isLoading = false;
       });
-      CustomToast().show(AllText().AT_SIGN_NOT_VALID, context, isError: true);
+      showToast(context,AllText().AT_SIGN_NOT_VALID, isError: true);
       return;
     }
 
     if (selectedOption == null) {
-      CustomToast().show(AllText().SELECT_TIME, context, isError: true);
+      showToast(context,AllText().SELECT_TIME, isError: true);
       return;
     }
 
@@ -154,14 +154,15 @@ class _ShareLocationSheetState extends State<ShareLocationSheet> {
     }
 
     if (result == true) {
-      CustomToast()
-          .show(AllText().SHARE_LOC_REQ_SENT, context, isSuccess: true);
+
+          showToast(context,AllText().SHARE_LOC_REQ_SENT);
       setState(() {
         isLoading = false;
       });
       Navigator.of(context).pop();
     } else {
-      CustomToast().show(AllText().SOMETHING_WENT_WRONG_TRY_AGAIN, context,
+      showToast(
+          context,AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
           isError: true);
       setState(() {
         isLoading = false;
