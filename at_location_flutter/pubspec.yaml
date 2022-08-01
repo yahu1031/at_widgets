@@ -34,7 +34,7 @@ dependencies:
   at_contacts_flutter:
     git:
       url: https://github.com/yahu1031/at_widgets
-      ref: master
+      ref: b3d1131
       path: at_contacts_flutter
 
 dependency_overrides:
