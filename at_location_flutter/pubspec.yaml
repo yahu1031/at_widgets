@@ -10,6 +10,8 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
   flutter: ">=1.20.0"
 
+publish_to: none
+
 dependencies:
   flutter:
     sdk: flutter
@@ -29,14 +31,20 @@ dependencies:
   http: ^0.13.4
 
   # at_chat_flutter: ^2.0.2
+  at_contacts_flutter:
+    git:
+      url: https://github.com/yahu1031/at_widgets
+      ref: master
+      path: at_contacts_flutter
+
+dependency_overrides:
   at_client_mobile: ^3.1.11
-  at_lookup: ^3.0.14
   at_commons: ^3.0.9
-  at_contact: ^3.0.5
   at_utils: ^3.0.6
   at_client: ^3.0.15
   at_common_flutter: ^2.0.8
-  at_contacts_flutter: ^4.0.5
+  at_contact: ^3.0.5
+  at_lookup: ^3.0.14
 
 
 dev_dependencies:

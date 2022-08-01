@@ -51,35 +51,35 @@ packages:
     source: hosted
     version: "1.0.0"
   at_client:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: at_client
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.32"
   at_client_mobile:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: at_client_mobile
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.0"
   at_common_flutter:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: at_common_flutter
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.8"
   at_commons:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: at_commons
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.21"
   at_contact:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: at_contact
       url: "https://pub.dartlang.org"
@@ -88,12 +88,14 @@ packages:
   at_contacts_flutter:
     dependency: "direct main"
     description:
-      name: at_contacts_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.5"
+      path: at_contacts_flutter
+      ref: master
+      resolved-ref: c1462cfc5946a46be698ba1bef51678c7d1d2c45
+      url: "https://github.com/yahu1031/at_widgets"
+    source: git
+    version: "1.0.1"
   at_lookup:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: at_lookup
       url: "https://pub.dartlang.org"
@@ -121,7 +123,7 @@ packages:
     source: hosted
     version: "1.0.0"
   at_utils:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: at_utils
       url: "https://pub.dartlang.org"
