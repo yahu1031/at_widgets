@@ -123,7 +123,7 @@ class _DesktopNewGroupState extends State<DesktopNewGroup> {
         processing = false;
       });
     } else {
-      CustomToast().show(TextConstants().EMPTY_NAME, context, gravity: 0);
+      showToast(context, TextConstants().EMPTY_NAME, isError: true);
     }
   }
 

@@ -207,7 +207,7 @@ class _ThemeSettingPageState extends State<ThemeSettingPage> {
     }
 
     if (!res) {
-      CustomToast().show('Something went wrong', context);
+      showToast(context, 'Something went wrong', isError: true);
     }
   }
 }

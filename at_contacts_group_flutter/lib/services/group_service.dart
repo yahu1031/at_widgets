@@ -298,9 +298,9 @@ class GroupService {
         if (result is AtGroup) {
           Navigator.of(context).pop();
         } else if (result == null) {
-          CustomToast().show(TextConstants().SERVICE_ERROR, context);
+          showToast(context, TextConstants().SERVICE_ERROR, isError: true);
         } else {
-          CustomToast().show(result.toString(), context);
+          showToast(context, result.toString());
         }
       }
     } catch (e) {

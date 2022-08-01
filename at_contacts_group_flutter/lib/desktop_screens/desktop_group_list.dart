@@ -221,7 +221,7 @@ class _DesktopGroupListState extends State<DesktopGroupList> {
             if (result != null && result) {
               Navigator.of(context).pop();
             } else {
-              CustomToast().show(TextConstants().SERVICE_ERROR, context);
+              showToast(context, TextConstants().SERVICE_ERROR, isError: true);
             }
           },
           image: groupPicture,

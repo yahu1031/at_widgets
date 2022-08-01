@@ -156,8 +156,9 @@ class _SelectedLocationState extends State<SelectedLocation> {
                               Navigator.of(context).pop();
                               Navigator.of(context).pop();
                             } else {
-                              CustomToast().show(
-                                  AllText().CANNOT_LEAVE_LABEL_EMPTY, context,
+                              showToast(
+                                  context,
+                                  AllText().CANNOT_LEAVE_LABEL_EMPTY, 
                                   isError: true);
                             }
                           },

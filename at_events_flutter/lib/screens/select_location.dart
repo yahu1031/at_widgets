@@ -144,8 +144,9 @@ class _SelectLocationState extends State<SelectLocation> {
                             }
 
                             if (!_isLocationServiceEnabled) {
-                              CustomToast().show(
-                                  AllText().UNABLE_TO_ACCESS_LOCATION, context,
+                              showToast(
+                                  context,
+                                  AllText().UNABLE_TO_ACCESS_LOCATION, 
                                   isError: true);
                               setState(() {
                                 nearMe = false;
@@ -188,8 +189,9 @@ class _SelectLocationState extends State<SelectLocation> {
               InkWell(
                 onTap: () async {
                   if (!_isLocationServiceEnabled) {
-                    CustomToast().show(
-                        AllText().UNABLE_TO_ACCESS_LOCATION, context,
+                    showToast(
+                         context,
+                        AllText().UNABLE_TO_ACCESS_LOCATION,
                         isError: true);
                     return;
                   }

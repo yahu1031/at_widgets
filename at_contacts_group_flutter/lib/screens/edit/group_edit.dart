@@ -349,11 +349,9 @@ class _GroupEditState extends State<GroupEdit> {
                         if (result is bool && result) {
                           return;
                         } else if (result == null) {
-                          CustomToast()
-                              .show(TextConstants().SERVICE_ERROR, context);
+                              showToast(context, TextConstants().SERVICE_ERROR, isError: true);
                         } else {
-                          CustomToast()
-                              .show(TextConstants().SERVICE_ERROR, context);
+                              showToast(context, TextConstants().SERVICE_ERROR, isError:  true);
                         }
                       }
                     },
@@ -397,11 +395,10 @@ class _GroupEditState extends State<GroupEdit> {
                                 .deletGroupMembers(contacts, widget.group);
 
                             if (result == null) {
-                              CustomToast()
-                                  .show(TextConstants().SERVICE_ERROR, context);
+                                  showToast(context, TextConstants().SERVICE_ERROR,isError: true);
                             } else {
-                              CustomToast().show(
-                                  "Deleted all members successfully!", context);
+                              showToast(context,
+                                  "Deleted all members successfully!");
 
                               showDeleteGroupDialog(
                                 context,
@@ -569,8 +566,8 @@ class _GroupEditState extends State<GroupEdit> {
 
             if (result is bool && result) {
               Navigator.of(context).pop();
-              CustomToast().show(
-                  "${contact.atSign ?? ''} deleted successfully!", context);
+              showToast(
+                  context, "${contact.atSign ?? ''} deleted successfully!");
               if (contacts.isEmpty) {
                 showDeleteGroupDialog(
                   context,
@@ -579,9 +576,9 @@ class _GroupEditState extends State<GroupEdit> {
                 );
               }
             } else if (result == null) {
-              CustomToast().show(TextConstants().SERVICE_ERROR, context);
+              showToast(context, TextConstants().SERVICE_ERROR, isError: true);
             } else {
-              CustomToast().show(result.toString(), context);
+              showToast(context, result.toString());
             }
           },
           atsign: contact.atSign,
@@ -604,10 +601,10 @@ class _GroupEditState extends State<GroupEdit> {
 
         await GroupService().updateGroupData(group, context);
       } else {
-        CustomToast().show(TextConstants().INVALID_NAME, context);
+        showToast(context, TextConstants().INVALID_NAME, isError: true);
       }
     } else {
-      CustomToast().show(TextConstants().INVALID_NAME, context);
+      showToast(context, TextConstants().INVALID_NAME, isError: true);
     }
 
     if (mounted) {

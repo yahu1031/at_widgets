@@ -294,7 +294,7 @@ Future<void> showDeleteGroupDialog(
           if (result is bool && result) {
             Navigator.of(context).pop();
           } else {
-            CustomToast().show(TextConstants().SERVICE_ERROR, context);
+            showToast(context, TextConstants().SERVICE_ERROR, isError: true);
           }
         },
         image: groupPicture,

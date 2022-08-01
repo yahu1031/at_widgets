@@ -207,13 +207,13 @@ class _EventsCollapsedContentState extends State<EventsCollapsedContent> {
                           value: isSharingEvent,
                           onChanged: (value) async {
                             if (isCancelled || isExited) {
-                              CustomToast().show(
-                                  isCancelled
-                                      ? AllText().EVENT_CANCELLED
-                                      : AllText().EVENT_EXITED,
+                              showToast(
                                   AtEventNotificationListener()
                                       .navKey!
                                       .currentContext,
+                                  isCancelled
+                                      ? AllText().EVENT_CANCELLED
+                                      : AllText().EVENT_EXITED,
                                   isError: true);
                               return;
                             }
@@ -236,28 +236,28 @@ class _EventsCollapsedContentState extends State<EventsCollapsedContent> {
                                 isExited: false,
                               );
                               if (result == true) {
-                                // CustomToast().show(
+                                // showToast(context,
                                 //     'Request to update data is submitted',
                                 //     AtEventNotificationListener()
                                 //         .navKey!
                                 //         .currentContext,
                                 //     isSuccess: true);
                               } else {
-                                CustomToast().show(
-                                    AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
+                                showToast(
                                     AtEventNotificationListener()
                                         .navKey!
                                         .currentContext,
+                                    AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
                                     isError: true);
                               }
                               setState(() {});
                               LoadingDialog().hide();
                             } catch (e) {
-                              CustomToast().show(
-                                  AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
+                              showToast(
                                   AtEventNotificationListener()
                                       .navKey!
                                       .currentContext,
+                                  AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
                                   isError: true);
                               LoadingDialog().hide();
                             }
@@ -271,11 +271,11 @@ class _EventsCollapsedContentState extends State<EventsCollapsedContent> {
                     child: InkWell(
                       onTap: () async {
                         if (isCancelled) {
-                          CustomToast().show(
-                              AllText().EVENT_CANCELLED,
+                          showToast(
                               AtEventNotificationListener()
                                   .navKey!
                                   .currentContext,
+                              AllText().EVENT_CANCELLED,
                               isError: true);
                           return;
                         }
@@ -331,16 +331,18 @@ class _EventsCollapsedContentState extends State<EventsCollapsedContent> {
       );
       if (result == true) {
       } else {
-        CustomToast().show(AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
+        showToast(
             AtEventNotificationListener().navKey!.currentContext,
+          AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
             isError: true);
       }
       setState(() {});
       LoadingDialog().hide();
       Navigator.of(AtEventNotificationListener().navKey!.currentContext!).pop();
     } catch (e) {
-      CustomToast().show(AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
+      showToast(
           AtEventNotificationListener().navKey!.currentContext,
+        AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
           isError: true);
       LoadingDialog().hide();
     }
@@ -361,16 +363,18 @@ class _EventsCollapsedContentState extends State<EventsCollapsedContent> {
       );
       if (result == true) {
       } else {
-        CustomToast().show(AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
+        showToast(
             AtEventNotificationListener().navKey!.currentContext,
+          AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
             isError: true);
       }
       setState(() {});
       LoadingDialog().hide();
       Navigator.of(AtEventNotificationListener().navKey!.currentContext!).pop();
     } catch (e) {
-      CustomToast().show(AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
+      showToast(
           AtEventNotificationListener().navKey!.currentContext,
+        AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
           isError: true);
       LoadingDialog().hide();
     }

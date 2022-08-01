@@ -280,20 +280,19 @@ class _EventNotificationDialogState extends State<EventNotificationDialog> {
                                                           isExited: false);
 
                                               if (result == true) {
-                                                CustomToast().show(
-                                                    AllText()
-                                                        .REQ_TO_UPDATE_DATA_SUB,
+                                                showToast(
                                                     AtEventNotificationListener()
                                                         .navKey!
                                                         .currentContext,
-                                                    isSuccess: true);
+                                                    AllText()
+                                                        .REQ_TO_UPDATE_DATA_SUB);
                                               } else {
-                                                CustomToast().show(
+                                                showToast(
+                                                    AtEventNotificationListener()
+                                                        .navKey!
+                                                        .currentContext,
                                                     AllText()
                                                         .SOMETHING_WENT_WRONG_TRY_AGAIN,
-                                                    AtEventNotificationListener()
-                                                        .navKey!
-                                                        .currentContext,
                                                     isError: true);
                                               }
 
@@ -330,18 +329,18 @@ class _EventNotificationDialogState extends State<EventNotificationDialog> {
                                     isExited: true);
 
                             if (result == true) {
-                              CustomToast().show(
+                              showToast(
+                                  AtEventNotificationListener()
+                                      .navKey!
+                                      .currentContext,
                                   AllText().REQ_TO_UPDATE_DATA_SUB,
-                                  AtEventNotificationListener()
-                                      .navKey!
-                                      .currentContext,
-                                  isSuccess: true);
+                                      );
                             } else {
-                              CustomToast().show(
-                                  AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
+                              showToast(
                                   AtEventNotificationListener()
                                       .navKey!
                                       .currentContext,
+                                  AllText().SOMETHING_WENT_WRONG_TRY_AGAIN,
                                   isError: true);
                             }
 

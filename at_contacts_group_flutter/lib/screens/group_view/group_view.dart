@@ -271,18 +271,20 @@ class _GroupViewState extends State<GroupView> {
 
                                     GroupService().showLoaderSink.add(false);
                                     if (result == null) {
-                                      CustomToast().show(
+                                      showToast(
+                                          context, 
                                           TextConstants().SERVICE_ERROR,
-                                          context);
+isError: true);
                                     } else if (result is bool && result) {
                                       // CustomToast().show(
                                       //     TextConstants().MEMBER_ADDED,
                                       //     context);
 
                                     } else {
-                                      CustomToast().show(
+showToast(
+                                          context, 
                                           TextConstants().SERVICE_ERROR,
-                                          context);
+                                          isError: true);
                                     }
                                   }
                                 },
@@ -366,8 +368,8 @@ class _GroupViewState extends State<GroupView> {
                 await GroupService().deletGroupMembers([contact], widget.group);
             if (result is bool && result) {
               Navigator.of(context).pop();
-              CustomToast()
-                  .show("${contact.atSign ?? ''} deleted successfully!", context);
+              showToast(context,
+                  "${contact.atSign ?? ''} deleted successfully!");
               if (contacts.isEmpty) {
                 showDeleteGroupDialog(
                   context,
@@ -376,9 +378,9 @@ class _GroupViewState extends State<GroupView> {
                 );
               }
             } else if (result == null) {
-              CustomToast().show(TextConstants().SERVICE_ERROR, context);
+              showToast(context, TextConstants().SERVICE_ERROR, isError: true);
             } else {
-              CustomToast().show(result.toString(), context);
+              showToast(context, result.toString());
             }
           },
           atsign: contact.atSign,

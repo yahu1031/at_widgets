@@ -1,33 +1,33 @@
 import 'dart:io';
 
-import 'package:at_contacts_group_flutter/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter_toastr/flutter_toastr.dart';
 
-class CustomToast {
-  CustomToast._();
-  static final CustomToast _instance = CustomToast._();
-  factory CustomToast() => _instance;
-
-  // ignore: always_declare_return_types
-  show(String text, BuildContext context,
-      {Color? bgColor, Color? textColor, int duration = 3, int gravity = 0}) {
-    if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
-      FlutterToastr.show(
-        text,
-        context,
-        duration: FlutterToastr.lengthLong,
-      );
-    } else {
-      Fluttertoast.showToast(
-          msg: text,
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: bgColor ?? AllColors().ORANGE,
-          textColor: textColor ?? Colors.white,
-          fontSize: 16.0);
-    }
-  }
-}
+void showToast(BuildContext? context, String msg,
+        {double? width, bool isError = false}) =>
+    ScaffoldMessenger.of(context!).showSnackBar(
+      SnackBar(
+        content: Text(
+          msg,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 12,
+            color: isError ? Colors.white : Colors.black,
+          ),
+        ),
+        duration: const Duration(milliseconds: 3000),
+        elevation: 0,
+        margin: width != null
+            ? null
+            : EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.2),
+        backgroundColor: isError ? Colors.red[700] : Colors.white,
+        padding: const EdgeInsets.all(10),
+        width: width,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: Platform.isAndroid
+              ? BorderRadius.circular(50)
+              : BorderRadius.circular(10),
+        ),
+      ),
+    );
